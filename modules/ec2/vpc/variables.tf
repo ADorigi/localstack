@@ -1,3 +1,4 @@
+# VPC variables
 variable "region" {
   description = "The AWS region to create resources in"
   type        = string
@@ -7,11 +8,12 @@ variable "region" {
 variable "vpc_name" {
   description = "The name of the VPC"
   type        = string
-  default     = "my-vpc"
+  default     = "default-vpc"
 }
 
-variable "vpc_cidr" {
-  description = "The CIDR block for the VPC"
-  type        = string
-  default     = "10.0.0.0/16"
+
+variable "cidr_block" {
+  description = "Network CIDR block for the vpc"
+  type        = string 
 }
+
