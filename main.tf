@@ -140,6 +140,19 @@ module "eks_cluster2" {
 #   depends_on = [ module.eks_cluster ]
 # }
 
+module "node_group" {
+
+    source = "./modules/eks/nodegroup"
+
+    cluster_name = module.eks_cluster.cluster_name
+    node_group_name = "nodeGroup1"
+    node_role_arn = "arn:aws:iam::000000000000:role/eks-role" 
+    subnet_ids         = ["subnet-0bb1c79de3EXAMPLE"] 
+    desired_size = 2
+    max_size = 3
+    min_size = 1
+}
+
 # resource "aws_eks_node_group" "node_group2" {
 #   cluster_name    = module.eks_cluster.cluster_name
 #   node_group_name = "localstack-node-group2"
