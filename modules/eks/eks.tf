@@ -1,3 +1,11 @@
+resource "random_integer" "lb_port" {
+  min = 49152
+  max = 65535
+  keepers = {
+    cluster_name = var.cluster_name
+  }
+}
+
 resource "aws_eks_cluster" "eks" {
   name     = var.cluster_name
   role_arn = var.role_arn
@@ -6,5 +14,7 @@ resource "aws_eks_cluster" "eks" {
     subnet_ids = var.subnet_ids
   }
 
-  tags = var.cluster_tags
+  tags = {
+    "_lb_ports_" : random_integer.lb_port.result
+  }
 }
