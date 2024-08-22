@@ -32,3 +32,13 @@ variable "min_size" {
   description = "The minimum number of nodes in the node group."
   type        = number
 }
+
+variable "ami_type" {
+  description = "The AMI type of the nodegroup"
+  type        = string
+}
+
+variable "instance_types" {
+  description = "The AMI types for the nodegroup"
+  type        = list(string)
+}
